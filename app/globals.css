@@ -1,26 +1,117 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #090909;
+  color: #000000;
+  font-family: 'Source Code Pro', monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+.nav-link {
+  position: relative;
+  color: #d0d0d0;
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-family: 'Source Code Pro', monospace;
+  transition: color 0.2s ease;
+}
+
+.nav-link::before,
+.nav-link::after {
+  content: '';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #d0d0d0;
+}
+
+.nav-link::before {
+  content: '[';
+  margin-right: 0.2rem;
+}
+
+.nav-link::after {
+  content: ']';
+  margin-left: 0.2rem;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* --- terminal --- */
+/* Center the terminal inside its parent; don't steal the whole viewport */
+.terminal-wrap {
+  width: 100%;
+  height: 100%;            /* was 100vh */
+  display: grid;
+  place-items: center;     /* was start center */
+}
+
+.terminal {
+  width: min(65rem, 86vw);
+  height: 52vh;
+  background: #121212;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  overflow: auto;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+
+.line {
+  margin: 0 0 0.25rem 0;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.line.user { 
+  color: #ffb5ca; 
+  gap: 0.6rem;
+}
+.line.sys  { color: #bdbdbd; }
+
+.prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.prompt {
+  color: #e0e0e0;
+  user-select: none;
+}
+
+.prompt-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffb5ca;
+  font: inherit;
+  caret-color: #f2f2f2;
+}
+
+.cmd {
+  padding-left: 0.7rem;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* nice thin scrollbar */
+.terminal::-webkit-scrollbar { width: 10px; }
+.terminal::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 8px; }
+.terminal::-webkit-scrollbar-track { background: #141414; }
