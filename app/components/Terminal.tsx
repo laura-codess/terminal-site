@@ -149,7 +149,6 @@ export default function Terminal() {
       <div ref={scrollRef} className="terminal">
         {messages.map((m, i) =>
           m.role === "user" ? (
-            // Render user lines like the live prompt: [>] [command]
             <div key={i} className="line user">
               <span className="prompt">&gt;</span>
               <span className="cmd">{m.text}</span>
